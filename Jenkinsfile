@@ -4,7 +4,7 @@ pipeline{
  stages{
     stage('SonarQube analysis'){
        environment {
-        scannerHome = tool 'SonarQubeScanner'
+        scannerHome = tool 'sonarscanner'
     }
       steps{
         withSonarQubeEnv('sonar'){
@@ -16,7 +16,7 @@ pipeline{
     }
   stage('Quality Gate'){
       environment {
-      scannerHome = tool 'SonarQubeScanner'
+      scannerHome = tool 'sonarscanner'
     }
       steps{
         timeout(time: 1, unit: 'HOURS') {
