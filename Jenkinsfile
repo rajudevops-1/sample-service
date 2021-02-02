@@ -5,9 +5,8 @@ pipeline{
     stage('SonarQube analysis'){
       steps{
         withSonarQubeEnv ('sonar'){
-            def sonarScanner = tool name: 'SonarQube Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-            sh ''' 
-            ${sonarScanner}/bin/sonar-scanner -Dsonar.java.binaries=. -Dsonar.projectKey=citrinesample
+         sh ''' 
+            sonar-scanner -Dsonar.java.binaries=. -Dsonar.projectKey=citrinesample
         '''     
         } 
       }
