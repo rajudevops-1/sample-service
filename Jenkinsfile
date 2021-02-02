@@ -3,16 +3,21 @@ pipeline{
   options{timeout (time: 1, unit:'HOURS')}
  stages{
     stage('SonarQube analysis'){
+       environment {
+        scannerHome = tool 'SonarQubeScanner'
+    }
       steps{
-        withSonarQubeEnv ('sonar'){
+        withSonarQubeEnv('sonar'){
          sh ''' 
-          cd /opt/sonar-scanner/bin;
-          sonar-scanner -Dsonar.java.binaries=. -Dsonar.projectKey=citrinesample -Dsonar.host.url=http://35.168.13.119:9000 -Dsonar.sourceEncoding=UTF-8
+            "${scannerHome}/bin/sonar-scanner" -Dsonar.java.binaries=. -Dsonar.projectKey=citrinesample -Dsonar.host.url=http://35.168.13.119:9000 -Dsonar.sourceEncoding=UTF-8
         '''     
         } 
       }
     }
   stage('Quality Gate'){
+      environment {
+      scannerHome = tool 'SonarQubeScanner'
+    }
       steps{
         timeout(time: 1, unit: 'HOURS') {
         waitForQualityGate abortPipeline: true
