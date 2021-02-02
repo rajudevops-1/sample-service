@@ -19,7 +19,7 @@ pipeline{
   stage('Docker build'){
    steps{
       sh '''
-           docker build -t ${GIT_COMMIT} .
+           docker build -t sample-service:${GIT_COMMIT} .
         '''    
       }
     }
