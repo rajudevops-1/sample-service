@@ -38,7 +38,7 @@ pipeline{
         cleanWs()
       }
     }
-    stage(Deploy image){
+    stage('Deploy image'){
         steps{
             sh '''
               docker pull 236006218289.dkr.ecr.us-east-1.amazonaws.com/${JOB_NAME}:${GIT_COMMT}
