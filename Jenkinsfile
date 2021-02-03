@@ -32,12 +32,7 @@ pipeline{
         '''    
       }
     }
-  
-   stage('ws cleanup'){
-      steps{
-        cleanWs()
-      }
-    }
+
     stage('Deploy image'){
         steps{
             sh '''
