@@ -24,11 +24,7 @@ pipeline{
       }
     }
      
-   stage('ws cleanup'){
-      steps{
-        cleanWs()
-      }
-    }
+
   stage('Docker push to ECR'){
    steps{
       sh '''
@@ -38,12 +34,16 @@ pipeline{
         '''    
       }
     }
-
+    stage('ws cleanup'){
+      steps{
+         cleanWs()
+      }
+    }
     stage('Deploy image'){
         steps{
             sh '''
               docker pull 236006218289.dkr.ecr.us-east-1.amazonaws.com/${JOB_NAME}:${GIT_COMMIT}
-              docker run -d --name sample-app -p80:5000 --restart always 236006218289.dkr.ecr.us-east-1.amazonaws.com/${JOB_NAME}:${GIT_COMMIT}
+              docker run -d --name citrine-sample-app -p80:5000 --restart always 236006218289.dkr.ecr.us-east-1.amazonaws.com/${JOB_NAME}:${GIT_COMMIT}
              '''
         }
     }
