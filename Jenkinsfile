@@ -43,7 +43,7 @@ pipeline{
         steps{
             sh '''
               docker pull 236006218289.dkr.ecr.us-east-1.amazonaws.com/${JOB_NAME}:${GIT_COMMIT}
-              docker run -d --name citrine-sample-app -p80:5000 --restart always 236006218289.dkr.ecr.us-east-1.amazonaws.com/${JOB_NAME}:${GIT_COMMIT}
+              docker run -d --name ${GIT_COMMIT} -p80:5000 --restart always 236006218289.dkr.ecr.us-east-1.amazonaws.com/${JOB_NAME}:${GIT_COMMIT}
              '''
         }
     }
