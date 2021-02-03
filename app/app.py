@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    width = int(request.args.get("width", 20))
-    height = int(request.args.get("height", 10))
+    width = int(request.args.get("width", 10))
+    height = int(request.args.get("height", 20))
     return f"""
 <html>
 <head>
