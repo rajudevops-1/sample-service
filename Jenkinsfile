@@ -9,7 +9,7 @@ pipeline{
       steps{
         withSonarQubeEnv('sonar'){
          sh ''' 
-            "${scannerHome}/bin/sonar-scanner" -Dsonar.java.binaries=. -Dsonar.projectKey=citrinesample -Dsonar.host.url=http://35.168.13.119:9000 -Dsonar.sourceEncoding=UTF-8
+            "${scannerHome}/bin/sonar-scanner" -Dsonar.java.binaries=. -Dsonar.projectKey=citrinesample -Dsonar.host.url=http://54.242.133.133:9000 -Dsonar.sourceEncoding=UTF-8
         '''     
         } 
       
